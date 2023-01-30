@@ -9,5 +9,9 @@ interface NavbarProps {
 
 export function Navbar(props: NavbarProps) {
   const { selectedPage, setSelectedPage } = props;
-  return <div></div>;
+
+  const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
+  const isAboveMediumScreens = useMediaQuery("(min-width: 768px)");
+
+  return <nav></nav>;
 }
