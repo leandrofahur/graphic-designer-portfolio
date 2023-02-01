@@ -1,37 +1,16 @@
 import { useState } from "react";
-import AnchorLink from "react-anchor-link-smooth-scroll";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
+import { Link } from "../Link/Link";
 import MenuIcon from "../../assets/menu-icon.svg";
 import CloseIcon from "../../assets/close-icon.svg";
-
-interface LinkProps {
-  page: string;
-  selectedPage: string;
-  setSelectedPage: (value: string) => void; //React.Dispatch<React.SetStateAction<string>>
-}
-
-function Link(props: LinkProps) {
-  const { page, selectedPage, setSelectedPage } = props;
-  const lowerCasePage = page.toLowerCase();
-
-  return (
-    <AnchorLink
-      className={`${
-        selectedPage === lowerCasePage ? "text-yellow" : ""
-      } hover:text-yellow transition duration-500`}
-      href={`#${lowerCasePage}`}
-      onClick={() => setSelectedPage(lowerCasePage)}
-    >
-      {page}
-    </AnchorLink>
-  );
-}
 
 interface NavbarProps {
   selectedPage: string;
   setSelectedPage: (value: string) => void; //React.Dispatch<React.SetStateAction<string>>
   isTopOfPage: boolean;
 }
+
+const links = ["Home", "Skills", "Projects", "Contact"];
 
 export function Navbar(props: NavbarProps) {
   const { selectedPage, setSelectedPage, isTopOfPage } = props;
@@ -47,12 +26,14 @@ export function Navbar(props: NavbarProps) {
 
         {isAboveMediumScreens ? (
           <div className="flex justify-between gap-16 font-opensans text-sm font-semibold">
-            <Link
-              page="Home"
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-            />
-            <Link
+            {links.map((link) => (
+              <Link
+                page={`${link}`}
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+              />
+            ))}
+            {/* <Link
               page="Skills"
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
@@ -66,7 +47,7 @@ export function Navbar(props: NavbarProps) {
               page="Contact"
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
-            />
+            /> */}
           </div>
         ) : (
           <div>
