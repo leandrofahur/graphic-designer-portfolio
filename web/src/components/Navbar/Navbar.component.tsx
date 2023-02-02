@@ -1,16 +1,39 @@
 import { useState } from "react";
+import AnchorLink from "react-anchor-link-smooth-scroll";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
-import { Link } from "../Link/Link";
 import MenuIcon from "../../assets/menu-icon.svg";
 import CloseIcon from "../../assets/close-icon.svg";
+
+interface LinkProps {
+  page: string;
+  selectedPage: string;
+  setSelectedPage: (value: string) => void; //React.Dispatch<React.SetStateAction<string>>
+}
+
+const links = ["Home", "Skills", "Projects", "Contact"];
+
+export function Link(props: LinkProps) {
+  const { page, selectedPage, setSelectedPage } = props;
+  const lowerCasePage = page.toLowerCase();
+
+  return (
+    <AnchorLink
+      className={`${
+        selectedPage === lowerCasePage ? "text-yellow" : ""
+      } hover:text-yellow transition duration-500`}
+      href={`#${lowerCasePage}`}
+      onClick={() => setSelectedPage(lowerCasePage)}
+    >
+      {page}
+    </AnchorLink>
+  );
+}
 
 interface NavbarProps {
   selectedPage: string;
   setSelectedPage: (value: string) => void; //React.Dispatch<React.SetStateAction<string>>
   isTopOfPage: boolean;
 }
-
-const links = ["Home", "Skills", "Projects", "Contact"];
 
 export function Navbar(props: NavbarProps) {
   const { selectedPage, setSelectedPage, isTopOfPage } = props;
@@ -33,21 +56,6 @@ export function Navbar(props: NavbarProps) {
                 setSelectedPage={setSelectedPage}
               />
             ))}
-            {/* <Link
-              page="Skills"
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-            />
-            <Link
-              page="Projects"
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-            />
-            <Link
-              page="Contact"
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-            /> */}
           </div>
         ) : (
           <div>
@@ -69,26 +77,13 @@ export function Navbar(props: NavbarProps) {
               </button>
             </div>
             <div className="flex flex-col gap-10 m-[33%] text-2xl text-deep-blue">
-              <Link
-                page="Home"
-                selectedPage={selectedPage}
-                setSelectedPage={setSelectedPage}
-              />
-              <Link
-                page="Skills"
-                selectedPage={selectedPage}
-                setSelectedPage={setSelectedPage}
-              />
-              <Link
-                page="Projects"
-                selectedPage={selectedPage}
-                setSelectedPage={setSelectedPage}
-              />
-              <Link
-                page="Contact"
-                selectedPage={selectedPage}
-                setSelectedPage={setSelectedPage}
-              />
+              {links.map((link) => (
+                <Link
+                  page={`${link}`}
+                  selectedPage={selectedPage}
+                  setSelectedPage={setSelectedPage}
+                />
+              ))}
             </div>
           </div>
         )}
