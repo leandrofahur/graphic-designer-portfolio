@@ -20,7 +20,7 @@ export function DotGroup(props: DotGroupProps) {
           className={`${
             selectedPage === link ? selectedStyles : "bg-dark-grey"
           } w-3 h-3 rounded-full`}
-          href={`${link}`}
+          href={`#${link}`}
           onClick={() => setSelectedPage(link)}
         />
       ))}

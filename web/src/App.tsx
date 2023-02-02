@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { DotGroup } from "./components/DotGroup/DotGroup";
 import { Navbar } from "./components/Navbar/Navbar.component";
+import { Landing } from "./pages/Landing/Landing";
 import { useMediaQuery } from "./hooks/useMediaQuery";
 import "./styles/global.css";
 
@@ -30,6 +31,7 @@ export function App() {
         selectedPage={selectedPage}
         setSelectedPage={setSelectedPage}
       />
+
       <div className="w-5/6 mx-auto md:h-full">
         {isAboveMediumScreens && (
           <DotGroup
@@ -37,6 +39,7 @@ export function App() {
             setSelectedPage={setSelectedPage}
           />
         )}
+        <Landing setSelectedPage={setSelectedPage} />
       </div>
     </div>
   );

@@ -45,7 +45,7 @@ export function Navbar(props: NavbarProps) {
   return (
     <nav className={`z-40 w-full top-0 py-6 ${navbarBackground}`}>
       <div className="flex items-center justify-between mx-auto w-5/6">
-        <h4 className="font-playfair text-3xl font-bold">AG</h4>
+        <h4 className="font-playfair text-3xl font-bold">JE</h4>
 
         {isAboveMediumScreens ? (
           <div className="flex justify-between gap-16 font-opensans text-sm font-semibold">
@@ -69,7 +69,7 @@ export function Navbar(props: NavbarProps) {
         )}
 
         {/* Mobile Menu Popup */}
-        {!isAboveMediumScreens && !isMenuToggled && (
+        {!isAboveMediumScreens && isMenuToggled && (
           <div className="fixed right-0 bottom-0 h-full bg-blue w-[300px]">
             <div className="flex justify-end p-12">
               <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
